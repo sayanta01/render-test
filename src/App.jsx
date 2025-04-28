@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 // import axios from "axios";
 import Note from "./components/Note";
 import Notification from "./components/Notification";
+import Footer from "./components/Footer";
 import noteService from "./services/notes";
 
 function App() {
@@ -85,6 +86,7 @@ function App() {
         <input value={newNote} onChange={(e) => setNewNote(e.target.value)} />
         <button type="submit">save</button>
       </form>
+      <Footer />
     </>
   );
 }
