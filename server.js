@@ -22,6 +22,10 @@ let notes = [
 // json-parser is listed before requestLogger, because otherwise request.body will not be initialized when the logger is executed!
 app.use(json());
 
+app.get("/", (req, res) => {
+  res.send("API is Running...");
+});
+
 app.get("/api/notes", (req, res) => {
   res.json(notes);
   // res.send("<h1>Hello World!</h1>");
