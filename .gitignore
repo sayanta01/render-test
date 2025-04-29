@@ -89,8 +89,8 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
-dist-ssr
+# dist
+# dist-ssr
 *.local
 
 # Editor directories and files
