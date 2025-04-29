@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors";
 const app = express();
 
+app.use(express.static("dist"));
 app.use(cors());
 app.use(morgan("tiny"));
 
@@ -77,7 +78,8 @@ app.post("/api/notes", (req, res) => {
   // console.log(note);
 });
 
-const port = process.env.PORT || 3001;
+// The process is global object that provides information about the current Node.js process
+const port = process.env.PORT || 3001; // PORT that Render tells your app to use & fallback
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
