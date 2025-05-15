@@ -71,7 +71,7 @@ app.get("/api/notes/:id", (request, response) => {
 // };
 
 app.post("/api/notes", (request, response, next) => {
-  // console.log(req.headers); // print all headers from the request
+  // console.log(request.headers); // print all headers from the request
 
   const body = request.body;
 
@@ -153,6 +153,7 @@ const errorHandler = (error, request, response, next) => {
   if (error.name === "CastError") {
     return response.status(400).send({ error: "malformatted id" });
   } else if (error.name === "ValidationError") {
+    // Triggered when data you try to save doesn’t meet schema’s validation rules
     return response.status(400).json({ error: error.message });
   }
 
