@@ -1,30 +1,21 @@
-import dotenv from "dotenv";
-dotenv.config();
 import mongoose from "mongoose";
-
-mongoose.set("strictQuery", false);
-
-const url = process.env.MONGODB_URI;
-
-console.log("connecting to", url);
-mongoose
-  .connect(url)
-  .then((result) => {
-    console.log("connected to MongoDB");
-  })
-  .catch((error) => {
-    console.log("error connecting to MongoDB:", error.message);
-  });
 
 const noteSchema = new mongoose.Schema({
   content: {
     type: String,
-    minLength: 5,
+    required: true,
+    minLength: 2,
     required: true,
   },
   important: Boolean,
+  // The information about the user who created it
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
+// Converts BSON to JSON
 noteSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
