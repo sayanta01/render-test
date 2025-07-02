@@ -1,27 +1,24 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Note from "./Note.jsx";
-import { expect } from "vitest";
 
-test("renders content", () => {
+test("verify that the component renders the contents of the note", () => {
   const note = {
     content: "Component testing is done with react-testing-library",
     important: true,
   };
 
-  // Renders the component with the render function
+  // Renders the component
   const { container } = render(<Note note={note} />);
-  const div = container.querySelector(".note");
 
-  // screen.debug();
+  screen.debug();
 
-  // Access the rendered component element
-  const element = screen.getByText(
-    "Component testing is done with react-testing-library",
-  );
-  screen.debug(element);
+  // const element = screen.getByText("Component testing is done with react-testing-library"); // Select the rendered component element
+  // screen.debug(element);
   // expect(element).toBeDefined(); // check if function returned anything
-  // expect(div).toHaveTextContent("Component testing is done with react-testing-library");
+
+  const div = container.querySelector(".note"); // Query the note container
+  expect(div).toHaveTextContent("Component testing is done with react-testing-library");
 });
 
 test("clicking the button class event handler once", async () => {
